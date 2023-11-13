@@ -88,4 +88,32 @@ class CONTACT_CANVAS
 
         DISPLAY_CONTACTS(0);
     }
+
+    public void PREVIOUS_CONTACT()
+    {
+        if(CURRENT_INDEX > 0)
+        {
+            CURRENT_INDEX--;
+        }
+
+        DISPLAY_CONTACTS();
+    }
+}
+
+public class IO_READER 
+{
+    public static final Scanner GET_SCANNER(String FILE)
+    {
+        try
+        {
+            return new Scanner(new File(FILE));
+        }
+
+        catch (FileNotFoundException EXCEPTION)
+        {
+            System.out.println(EXCEPTION.getMessage());
+            return null;
+        }
+    }
+}
 }
