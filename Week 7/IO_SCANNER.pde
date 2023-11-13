@@ -1,83 +1,99 @@
+/* COPYRIGHT (C) HARRY CLARK */
+
+/* CS1_OOP WEEK 7 */
+
+/* THIS FILE PERTAINS TOWARDS THE LOGIC OF PARSING THE CONTENTS OF A CSV FILES */
+/* WITH THE INTENTION OF TRANSPOSING THIS LOGIC OVER TOWARDS PROCESSING TO */
+/* DISPLAY THE CORRESPONDENCE */
+
+/* THIS WILL BE A DEMONSTRATION OF USING ARRAYLIST AS PER THIS WEEK'S LECTURE */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import controlP5.*;
 
-Table table;
-int currentRow = 0;
-int numRows;
+Table TABLE;
+int CURRENT_ROW = 0;
+int NUM_ROWS;
 
 void setup() {
   size(400, 200);
   
-  // Load CSV file
-  table = loadTable("D:\\Programming Projects\\CS1_OOP\\Week 7\\contact.csv", "header");
-  numRows = table.getRowCount();
+  TABLE = loadTable("D:\\Programming Projects\\CS1_OOP\\Week 7\\contact.csv", "header");
+  NUM_ROWS = TABLE.getRowCount();
 
-  // Shuffle rows
   shuffleRows();
 
-  // Create button
-  ControlP5 cp5 = new ControlP5(this);
-  Button button = cp5.addButton("nextButton")
+  ControlP5 CP5 = new ControlP5(this);
+  Button BUTTON = CP5.addButton("nextButton")
                      .setValue(0)
                      .setPosition(20, 160)
                      .setSize(80, 30)
                      .setCaptionLabel("Next");
 
-  // Callback function for button
-  button.addCallback(new CallbackListener() {
-    public void controlEvent(CallbackEvent event) {
-      if (event.getAction() == ControlP5.ACTION_RELEASED) {
+  BUTTON.addCallback(new CallbackListener() 
+  {
+    public void controlEvent(CallbackEvent event) 
+    {
+      if (event.getAction() == ControlP5.ACTION_RELEASED) 
+      {
         nextRow();
       }
     }
   });
 }
 
-void draw() {
+void draw() 
+{
   background(255);
 
-  // Display current row data
-  if (currentRow < numRows) {
-    TableRow row = table.getRow(currentRow);
-    String forename = row.getString("Forename");
-    String surname = row.getString("Surname");
-    String email = row.getString("Email");
-    String phoneNo = row.getString("Phone No.");
+  if (CURRENT_ROW < NUM_ROWS) 
+  {
+    
+    TableRow ROW = TABLE.getRow(CURRENT_ROW);
+    String FORENAME = ROW.getString("Forename");
+    String SURNAME = ROW.getString("Surname");
+    String EMAIL = ROW.getString("Email");
+    String PHONE_NO = ROW.getString("Phone No.");
 
-    // Display data as per your requirements
-    println("Row: " + (currentRow + 1));
-    println("Forename: " + forename);
-    println("Surname: " + surname);
-    println("Email: " + email);
-    println("Phone No: " + phoneNo);
-  } else {
+    println("Row: " + (CURRENT_ROW + 1));
+    println("Forename: " + FORENAME);
+    println("Surname: " + SURNAME);
+    println("Email: " + EMAIL);
+    println("Phone No: " + PHONE_NO);
+  } 
+  
+  else 
+  {
     println("No more rows.");
   }
 }
 
-void nextRow() {
-  currentRow++;
-  if (currentRow >= numRows) {
-    currentRow = 0;  // Loop back to the first row if reached the end
-    shuffleRows();   // Shuffle rows again
+void nextRow() 
+{
+  CURRENT_ROW++;
+  if (CURRENT_ROW >= NUM_ROWS) 
+  {
+    CURRENT_ROW = 0; 
+    shuffleRows();
   }
 }
 
-void shuffleRows() {
-  // Shuffle rows in the table
-  for (int i = 0; i < numRows; i++) {
-    int indexA = (int) random(numRows);
-    int indexB = (int) random(numRows);
-    swapRows(table, indexA, indexB);
+void shuffleRows() 
+{
+  for (int I = 0; I < NUM_ROWS; I++) {
+    int INDEX_A = (int) random(NUM_ROWS);
+    int INDEX_B = (int) random(NUM_ROWS);
+    swapRows(TABLE, INDEX_A, INDEX_B);
   }
 
-  currentRow = 0;  // Reset currentRow after shuffling
+  CURRENT_ROW = 0; 
 }
 
-void swapRows(Table t, int rowA, int rowB) {
-  TableRow tempRow = t.getRow(rowA);
-  t.setRow(rowA, t.getRow(rowB));
-  t.setRow(rowB, tempRow);
+void swapRows(Table T, int ROW_A, int ROW_B) 
+{
+  TableRow TEMP_ROW = T.getRow(ROW_A);
+  T.setRow(ROW_A, T.getRow(ROW_B));
+  T.setRow(ROW_B, TEMP_ROW);
 }
