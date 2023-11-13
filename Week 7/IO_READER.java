@@ -45,3 +45,47 @@ class CONTACT
     }
 }
 
+class CONTACT_CANVAS
+{
+    private static ArrayList<CONTACT> CONTACT_LIST;
+    private static int CURRENT_INDEX;
+
+    public CONTACT_CANVAS()
+    {
+        CONTACT_LIST = new ArrayList<>();
+        CURRENT_INDEX = 0;
+    }
+
+    public static final void ADD_CONTACT(CONTACT CONTACTS)
+    {
+        CONTACT_LIST.add(CONTACTS);
+    }
+
+    public static final void DISPLAY_CONTACTS(int RESULT) 
+    {
+        RESULT = CURRENT_INDEX >= 0 && CURRENT_INDEX < CONTACT_LIST.size() ? 1 : 0;
+        
+        switch (RESULT) 
+        {
+        case 1:
+            CONTACT CURRENT_CONTACT = CONTACT_LIST.get(CURRENT_INDEX);
+            System.out.println(CURRENT_CONTACT.toString());
+            break;
+        case 0:
+            System.out.println("No contacts to display");
+            break;
+        default:
+            break;
+        }
+    }
+
+    public static final void NEXT_CONTACT()
+    {
+        if(CURRENT_INDEX < CONTACT_LIST.size() - 1)
+        {
+            CURRENT_INDEX++;
+        }
+
+        DISPLAY_CONTACTS(0);
+    }
+}
