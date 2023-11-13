@@ -3,10 +3,16 @@ package Practise;
 import java.util.LinkedList;
 import java.io.*;
 
+/* CREATES A NEW TYPE FROM A LINKEDLIST WITH THE DESIGNATED TYPE */
+
 class LIST_TYPE 
 {
     public static LinkedList<String> CONCATENATE_TYPE = new LinkedList<>();
 }
+
+/* ABSTRACT THE CONTENTS OF THE ABOVE CLASS TO CREATE NEW TYPES */
+/* THE PUSH METHOD IS A REPRESENTATION OF THE STACK WHEREBY WE ARE PUSHING */
+/* ELEMENTS ONTO IT - TYPICALLY IN A BIG ENDIANESS MANNER */
 
 public class LINKED_LIST 
 {
