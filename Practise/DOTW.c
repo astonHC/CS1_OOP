@@ -6,7 +6,7 @@
 typedef struct DAYS
 {
     static DOTW* DAY_OF_THE_WEEK;
-}
+};
 
 typedef enum
 {
