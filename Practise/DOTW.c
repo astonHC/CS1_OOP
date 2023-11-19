@@ -3,12 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct DAYS
-{
-    static DOTW* DAY_OF_THE_WEEK;
-};
-
-typedef enum
+typedef enum DOTW
 {
     MONDAY,
     TUESDAY,
@@ -20,39 +15,39 @@ typedef enum
     
 } DOTW;
 
-static void WHICH_DAY()
+static void WHICH_DAY(int DAY)
 {
-    int DAY;
-    DAYS.DAY_OF_THE_WEEK DOTW;
+    static DOTW* DAY_OF_THE_WEEK = NULL;
+    DAY_OF_THE_WEEK = malloc(sizeof(DOTW));
 
-    switch(DAY)
+    switch(*DAY_OF_THE_WEEK)
     {
-        case 1:
-            printf("Today is: ", DOTW.MONDAY);
-            break;
-j
-        case 2:
-            printf("Today is: ", DOTW.TUESDAY);
+        case MONDAY:
+            printf("Today is Monday\n");
             break;
 
-        case 3:
-            printf("Today is: ", DOTW.WEDNESDAY);
+        case TUESDAY:
+            printf("Today is Tuesday\n");
             break;
 
-        case 4:
-            printf("Today is: ", DOTW.THURSDAY);
+        case WEDNESDAY:
+            printf("Today is Wednesday\n");
             break;
 
-        case 5:
-            printf("Today is: ", DOTW.FRIDAY);
+        case THURSDAY:
+            printf("Today is Thursday\n");
             break;
 
-        case 6:
-            printf("Today is: ", DOTW.SATURDAY);
+        case FRIDAY:
+            printf("Today is Friday\n");
             break;
 
-        case 7:
-            printf("Today is: ", DOTW.SUNDAY);
+        case SATURDAY:
+            printf("Today is Saturday\n");
+            break;
+
+        case SUNDAY:
+            printf("Today is Sunday\n");
             break;
     }
 }
@@ -60,11 +55,10 @@ j
 int main(int argc, char* argv[])
 {
     int DAY;
-    printf("%d", "Enter a number between 1 and 6");
+    printf("Enter a number between 1 and 6: ");
     scanf("%d", &DAY);
 
     WHICH_DAY(DAY);
 
     return 0;
 }
-
