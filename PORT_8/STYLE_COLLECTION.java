@@ -42,4 +42,12 @@ public final class STYLE_COLLECTION
     {
         return DEFAULT;
     }
+
+    /* USE THE GET MODIFIER AS PER THE HASH MAP TO BE ABLE TO RETURN */
+    /* IT'S DESIGNATED TYPE */
+
+    public static STYLE GET_STYLE_TYPE(String STYLE_NAME)
+    {
+        return STYLE_TYPE.get(STYLE_NAME);
+    }
 }
