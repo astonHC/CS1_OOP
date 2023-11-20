@@ -29,5 +29,17 @@ public final class STYLE_COLLECTION
         STYLE_TYPE = new HashMap<String, STYLE>();
     }
 
+    /* CONCATENATE A STYLE TYPE IN RELATION TO THE LOCAL ARGS OF PUTS */
+    /* PUTS IS THE SURROGATE MEANS OF PROVIDING A KEY VALUE WHICH */
+    /* ACTS AS A POINTER OF SORTS TOWARDS THE OBJECT IN QUESTION */
 
+    public static final void ADD_STYLE(STYLE STYLE_BASE)
+    {
+        STYLE_TYPE.put(STYLE.GET_COLOUR(), STYLE_BASE);
+    }
+
+    public static STYLE GET_DEFAULT()
+    {
+        return DEFAULT;
+    }
 }
