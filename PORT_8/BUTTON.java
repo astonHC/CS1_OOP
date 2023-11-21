@@ -9,8 +9,6 @@
 /* MORE SPECIFICALLY, FOCUSSING THE ATTENTION ON PROVIDING BASE FUNCTIONALITY */
 /* FOR THE STYLE BUTTONS AND THEIR PRE-REQUISTIES */
 
-import javafx.stage.Window;
-
 public class BUTTON
 {
    private static float X,Y,W,H;
