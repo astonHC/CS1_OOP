@@ -5,6 +5,42 @@
 // THE FOLLOWING FILE PERTAINS TOWARDS ALL OF THE OTHER PRE-REQUISITIES INVOLVED
 // WITH THE FILES ATTACHED TO PROVIDE THE MAIN FUNCTIONALITY FOR THE BUTTONS
 
+public class BUTTON
+{
+   private float X, Y, W, H;
+   private String LABEL;
+   
+   public BUTTON(float X, float Y, float W, float H, String LABEL)
+   {
+       this.X = X;
+       this.Y = Y;
+       this.W = W;
+       this.H = H;
+       this.LABEL = LABEL;
+   }
+   
+   public void DISPLAY()
+   {
+     fill(STYLES.GET_STYLE_TYPE(LABEL).GET_FILL_COLOUR());
+     stroke(STYLES.GET_STYLE_TYPE(LABEL).GET_STROKE_COLOUR());
+     rect(X,Y,W,H);
+     fill(255);
+     textSize(16);
+     textAlign(CENTER, CENTER);
+     text(LABEL, X + W / 2, Y + H / 2);
+   }
+
+   public boolean IS_INSIDE(float MOUSE_X_POS, float MOUSE_Y_POS)
+   {
+     return MOUSE_X_POS >= X && MOUSE_X_POS <= X + W && MOUSE_Y_POS >= Y && MOUSE_Y_POS <= Y + H;
+   }
+
+   public String GET_TEXT()
+   {
+     return LABEL;
+   }
+}
+
 // MISCELLANEOUS METHODS 
 // I HAVE THEM SITUATED AT THE TOP TO ALLOW FOR CONVIENIENCE WHEN ACCESSING
 
@@ -12,6 +48,7 @@ String DISPLAY_TEXT;
 String[] STYLE_NAMES = {"Dark", "Light", "Red", "Blue"};
 STYLE_COLLECTION STYLES;
 STYLE CURRENT_STYLE;
+BUTTON[] BUTTONS;
 
 void setup()
 {
@@ -53,44 +90,6 @@ void draw()
     }
 }
 
-public class BUTTON
-{
-   private float X, Y, W, H;
-   private String LABEL;
-   
-   public BUTTON(float X, float Y, float W, float H, String LABEL)
-   {
-       this.X = X;
-       this.Y = Y;
-       this.W = W;
-       this.H = H;
-       this.LABEL = LABEL;
-   }
-   
-   public void DISPLAY()
-   {
-     fill(STYLES.GET_STYLE_TYPE(LABEL).GET_FILL_COLOUR());
-     stroke(STYLES.GET_STYLE_TYPE(LABEL).GET_STROKE_COLOUR());
-     rect(X,Y,W,H);
-     fill(255);
-     textSize(16);
-     textAlign(CENTER, CENTER);
-     text(LABEL, X + W / 2, Y + H / 2);
-   }
-
-   public boolean IS_INSIDE(float MOUSE_X_POS, float MOUSE_Y_POS)
-   {
-     return MOUSE_X_POS >= X && MOUSE_X_POS <= X + W && MOUSE_Y_POS >= Y && MOUSE_Y_POS <= Y + H;
-   }
-
-   public String GET_TEXT()
-   {
-     return LABEL;
-   }
-}
-
-BUTTON[] BUTTONS;
-
 void SETUP_BUTTONS()
 {
      BUTTONS = new BUTTON[STYLE_NAMES.length];
@@ -102,3 +101,24 @@ void SETUP_BUTTONS()
      }
 }
 
+void mousePressed()
+{
+    for(BUTTON B : BUTTONS)
+    {
+       if(B != null && B.IS_INSIDE(mouseX, mouseY))
+       {
+          String SELECTED = B.GET_TEXT();
+          CURRENT_STYLE = STYLES.GET_STYLE_TYPE(SELECTED);
+          
+          if (CURRENT_STYLE != null)
+          {
+             DISPLAY_TEXT = "Selected Style: " + CURRENT_STYLE.GET_COLOUR(); 
+          }
+          
+          else
+          {
+             println("Selected Style is Null"); 
+          }
+       }
+    }
+}
