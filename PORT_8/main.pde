@@ -15,7 +15,16 @@ class DISPLAY_TYPES
   }
 }
 
+DISPLAY_TYPES TYPES;
+
 void setup()
 {
    size(600, 600); 
+   TYPES = new DISPLAY_TYPES();
+   SETUP_STYLES();
+}
+
+void SETUP_STYLES()
+{
+    TYPES.CURRENT_COLLECTION = new STYLE_COLLECTION();
 }
