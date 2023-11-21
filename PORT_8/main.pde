@@ -27,4 +27,17 @@ void setup()
 void SETUP_STYLES()
 {
     TYPES.CURRENT_COLLECTION = new STYLE_COLLECTION();
+    
+    STYLE DARK = new STYLE("Dark", color(30), color(150), color(50), 20);
+    STYLE LIGHT = new STYLE("Light", color(220), color(50), color(220), 18);
+    STYLE RED = new STYLE("Red", color(200, 0, 0), color(255), color(100, 0, 0), 22);
+    STYLE BLUE = new STYLE("Blue", color(0, 0, 200), color(50), color(0, 0, 150), 24);
+    
+    TYPES.CURRENT_COLLECTION.ADD_STYLE(DARK);
+    TYPES.CURRENT_COLLECTION.ADD_STYLE(LIGHT);
+    TYPES.CURRENT_COLLECTION.ADD_STYLE(RED);
+    TYPES.CURRENT_COLLECTION.ADD_STYLE(BLUE);
+    
+    TYPES.CURRENT_STYLE = DARK;
+    TYPES.CURRENT_COLLECTION.SET_DEFAULT(TYPES.CURRENT_STYLE);
 }
