@@ -5,31 +5,6 @@
 // THE FOLLOWING FILE PERTAINS TOWARDS ALL OF THE OTHER PRE-REQUISITIES INVOLVED
 // WITH THE FILES ATTACHED TO PROVIDE THE MAIN FUNCTIONALITY FOR THE BUTTONS
 
-public class BUTTON
-{
-   public float X, Y, W, H;
-   public String LABEL;
-
-   public BUTTON(float X, float Y, float WIDTH, float HEIGHT, String LABEL)
-   {
-     this.X = X;
-     this.Y = Y;
-     this.W = WIDTH;
-     this.H = HEIGHT;
-     this.LABEL = LABEL;
-   }
-
-   public boolean IS_INSIDE(float MOUSE_X_POS, float MOUSE_Y_POS)
-   {
-     return MOUSE_X_POS >= X && MOUSE_X_POS <= X + W && MOUSE_Y_POS >= Y && MOUSE_Y_POS <= Y + H;
-   }
-
-   public String GET_TEXT()
-   {
-     return LABEL;
-   }
-}
-
 // MISCELLANEOUS METHODS 
 // I HAVE THEM SITUATED AT THE TOP TO ALLOW FOR CONVIENIENCE WHEN ACCESSING
 
@@ -37,8 +12,6 @@ String DISPLAY_TEXT;
 String[] STYLE_NAMES = {"Dark", "Light", "Red", "Blue"};
 STYLE_COLLECTION STYLES;
 STYLE CURRENT_STYLE;
-BUTTON[] BUTTONS;
-BUTTON BUTTON;
 
 void setup()
 {
@@ -73,21 +46,59 @@ void draw()
     stroke(CURRENT_STYLE.GET_STROKE_COLOUR());
     textSize(CURRENT_STYLE.GET_TEXT_SIZE());
     text(DISPLAY_TEXT, 50, 50);
+    
+    for (BUTTON B : BUTTONS)
+    {
+        B.DISPLAY();
+    }
 }
 
-void DISPLAY_BUTTONS() 
+public class BUTTON
 {
-     fill(STYLES.GET_STYLE_TYPE(BUTTON.LABEL).GET_FILL_COLOUR());
-     stroke(STYLES.GET_STYLE_TYPE(BUTTON.LABEL).GET_STROKE_COLOUR());
-     rect(BUTTON.X, BUTTON.Y, BUTTON.Y, BUTTON.H);
+   private float X, Y, W, H;
+   private String LABEL;
+   
+   public BUTTON(float X, float Y, float W, float H, String LABEL)
+   {
+       this.X = X;
+       this.Y = Y;
+       this.W = W;
+       this.H = H;
+       this.LABEL = LABEL;
+   }
+   
+   public void DISPLAY()
+   {
+     fill(STYLES.GET_STYLE_TYPE(LABEL).GET_FILL_COLOUR());
+     stroke(STYLES.GET_STYLE_TYPE(LABEL).GET_STROKE_COLOUR());
+     rect(X,Y,W,H);
      fill(255);
      textSize(16);
      textAlign(CENTER, CENTER);
-     text(BUTTON.LABEL, BUTTON.X + BUTTON.W / 2, BUTTON.Y + BUTTON.H / 2);
+     text(LABEL, X + W / 2, Y + H / 2);
+   }
+
+   public boolean IS_INSIDE(float MOUSE_X_POS, float MOUSE_Y_POS)
+   {
+     return MOUSE_X_POS >= X && MOUSE_X_POS <= X + W && MOUSE_Y_POS >= Y && MOUSE_Y_POS <= Y + H;
+   }
+
+   public String GET_TEXT()
+   {
+     return LABEL;
+   }
 }
 
+BUTTON[] BUTTONS;
 
 void SETUP_BUTTONS()
 {
-  
+     BUTTONS = new BUTTON[STYLE_NAMES.length];
+     float BUTTON_WIDTH = width / STYLE_NAMES.length;
+     
+     for(int i = 0; i < STYLE_NAMES.length; i++)
+     {
+       BUTTONS[i] = new BUTTON(i * BUTTON_WIDTH, height - 50, BUTTON_WIDTH, 50, STYLE_NAMES[i]);
+     }
 }
+
