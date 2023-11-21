@@ -52,7 +52,7 @@ BUTTON[] BUTTONS;
 
 void setup()
 {
-   size(800, 600); 
+   size(1000, 600); 
    DISPLAY_TEXT = "";
    SETUP_STYLES();
    SETUP_BUTTONS();
@@ -82,7 +82,7 @@ void draw()
     fill(CURRENT_STYLE.GET_FILL_COLOUR());
     stroke(CURRENT_STYLE.GET_STROKE_COLOUR());
     textSize(CURRENT_STYLE.GET_TEXT_SIZE());
-    text(DISPLAY_TEXT, 50, 50);
+    text(DISPLAY_TEXT, 490, 100);
     
     for (BUTTON B : BUTTONS)
     {
