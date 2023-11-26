@@ -13,9 +13,31 @@ import java.util.ArrayList.*;
 public class PHONE_MAP
 {
     private static final HashMap<String, Phone> PHONE_MAP = new HashMap<>();
+    private static String PHONE_KEY;
+    private static String PHONE_KEY_MAP;
 
     public PHONE_MAP()
     {
-        
+
+    }
+
+    /* ADD THE CORRESPONDING TYPE OF THE PHONE TO THE MAPPED HASHMAP */
+    /* THIS IS POSSIBLE BY USING THE PRE-DEFINED METHODS ESTABLISHED IN "Phone.java" */
+    /* TO BE ABLE TO WORK IN TANDEM WITH THE HASHMAP TO ALLOCATE THE CONTENTS */
+
+    public static void ADD_PHONE(Phone PHONE_TYPE)
+    {
+        PHONE_KEY = PHONE_TYPE.getBrand() + " " + PHONE_TYPE.getModel();
+        PHONE_MAP.put(PHONE_KEY, PHONE_TYPE);
+    }
+
+    /* FIND THE CORRESPONDING TYPE OF THE PHONE TO THE MAPPED HASHMAP */
+    /* THIS FUNCTION WORKS IN A SIMILAR VEIN TO THE ABOVE FUNCTION ALBEIT */
+    /* IT FOCUSESS MORE SO ON BEING ABLE TO ESTABLISH CONNECTIONS BETWEEN TYPES */
+
+    public Phone FIND_PHONE_TYPE(String BRAND, String MODEL)
+    {
+        PHONE_KEY_MAP = BRAND + " " + MODEL;
+        return PHONE_MAP.get(PHONE_KEY_MAP);
     }
 }
