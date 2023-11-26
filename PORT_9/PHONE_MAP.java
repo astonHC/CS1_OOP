@@ -8,6 +8,7 @@
 /* SYSTEM INCLUDES */
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList.*;
 
 public class PHONE_MAP
@@ -15,6 +16,7 @@ public class PHONE_MAP
     private static final HashMap<String, Phone> PHONE_MAP = new HashMap<>();
     private static String PHONE_KEY;
     private static String PHONE_KEY_MAP;
+    private static final StringBuilder RESULT = new StringBuilder();
 
     public PHONE_MAP()
     {
@@ -39,5 +41,20 @@ public class PHONE_MAP
     {
         PHONE_KEY_MAP = BRAND + " " + MODEL;
         return PHONE_MAP.get(PHONE_KEY_MAP);
+    }
+
+    /* CONCATENATES A NEW TYPE TO A STRING FROM THE RESULTING OUTPUT */
+    /* APPEND INVOLVES THE PROCESS OF PRODUCING THE OUTPUT OF THE STRING */
+
+    /* CREATE A NEW LINE FOR EVERY SUBSEQUENT RESULT */
+
+    public String TO_STRING()
+    {
+        for(Map.Entry<String, Phone> ENTRY : PHONE_MAP.entrySet())
+        {
+            RESULT.append(ENTRY.getValue().toString()).append("\n");
+        }
+
+        return RESULT.toString();
     }
 }
