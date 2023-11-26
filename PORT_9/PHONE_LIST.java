@@ -47,7 +47,7 @@ public class PHONE_LIST
 
     /* SORT THE PHONE TYPE USING THE COLLECTIONS NAMESPACE */
     /* --------------------------------------------------- */
-    /* TO DO: */
+    /* TO DO:                                              */
     /* --------------------------------------------------- */
     /* FIGURE OUT WHETHER OR NOT THE NULL TERMINATOR WILL WORK */
     /* AS IT WON'T ALLOW ME TO JUST USE THE ARRAYLIST AS IT'S */
@@ -58,4 +58,18 @@ public class PHONE_LIST
         Collections.sort(PHONE_TYPE, null);
     }
 
+    /* THIS FUNCTION REPRESENT THE ACCESS METHOD USED TO ACCESS THE PHONE FROM THE DATA SHEET */
+    
+    public Phone FIND_WHICH_PHONE(String BRAND, String MODEL)
+    {
+        /* ASSUMING THE ARBITARY LENGTH OF HOW MANY ELEMENTS THERE ARE IN THE DATASHEET */
+        /* RETURN THE CORRESPONDING VALUES FOR THE BRAND AND MODEL RELATIVE TO THE SORTED ARRAY LIST */
+
+        for(Phone P : PHONE_TYPE)
+        {
+            if(P.getBrand().equals(BRAND) && P.getModel().equals(MODEL)) return P;
+        }
+
+        return null;
+    }
 }
