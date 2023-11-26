@@ -72,4 +72,21 @@ public class PHONE_LIST
 
         return null;
     }
+
+    /* ASSUMING THE ARBITARY LENGTH OF THE PHONE ARRAY LIST */
+    /* DYNAMICALLY SORT BY THE MOST EXPENSIVE RELATIVE TO THE MINIMUM PRICE */
+
+    public PHONE_LIST SORT_EXPENSIVE(int MIN_PRICE)
+    {
+        PHONE_LIST MOST_EXPENSIVE = new PHONE_LIST();
+
+        for(Phone P : PHONE_TYPE)
+        {
+            if(P.getApprox_price_EUR() > MIN_PRICE) MOST_EXPENSIVE .ADD_PHONE(P);
+        }
+
+        MOST_EXPENSIVE.SORT_PHONE_TYPES();
+        return MOST_EXPENSIVE;
+    }
+
 }
