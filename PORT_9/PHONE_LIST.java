@@ -11,6 +11,8 @@ import java.io.*;
 import java.util.HashMap.*;
 import java.util.Scanner.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
 
 /* THIS CLASS WILL HOUSE THE BASIC NECESSITIES OF BEING ABLE TO ACCESS */
 /* THE PHONE TYPES */
@@ -30,9 +32,30 @@ public class PHONE_LIST
         
     }
 
+    /* THESE FUNCTIONS USES THE CORRESPONDING FUNCTIONS TO ADD, SORT AND EVALUATE */
+    /* EACH RESPECTIVE COMPONENT OF THE DATA SHEET */
+
     public static void ADD_PHONE(Phone TYPES)
     {
         PHONE_TYPE.add(TYPES);
+    }
+
+    public static int GET_PHONE_SIZE()
+    {
+        return PHONE_TYPE.size();
+    }
+
+    /* SORT THE PHONE TYPE USING THE COLLECTIONS NAMESPACE */
+    /* --------------------------------------------------- */
+    /* TO DO: */
+    /* --------------------------------------------------- */
+    /* FIGURE OUT WHETHER OR NOT THE NULL TERMINATOR WILL WORK */
+    /* AS IT WON'T ALLOW ME TO JUST USE THE ARRAYLIST AS IT'S */
+    /* OWN ARG */
+
+    public static void SORT_PHONE_TYPES()
+    {
+        Collections.sort(PHONE_TYPE, null);
     }
 
 }
