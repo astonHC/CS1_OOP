@@ -35,16 +35,34 @@ void setup()
   Scanner SCAN = InputReader.getScanner("phoneData.csv");
   
   println("Original Phone List: ");
-  println(LIST);
+  println(LIST.TO_STRING());
+  
+  println("Sorted Phone List: ");
+  LIST.SORT_PHONE_TYPES();
+  println(LIST.TO_STRING());
   
   LIST.SORT_PHONE_TYPES();
   println("Sorted Phone List: ");
   println(LIST);
+  
+  String FIND_BRAND = "Apple";
+  String FIND_MODEL = "iPhone 8";
+  Phone FOUND_PHONE = LIST.FIND_WHICH_PHONE(FIND_BRAND, FIND_MODEL);
+  
+  if(FOUND_PHONE != null)
+  {
+     println("Found phone in List: " + FOUND_PHONE);
+  }
+  
+  else
+  {
+     println("Phone not found in List."); 
+  }
 }
 
 void READ_DATA()
 {
-   Scanner SCANNER = InputReader.getScanner("phoneData.csv");
+   Scanner SCANNER = InputReader.getScanner("D://Programming//CS1_OOP//LAB9//LAB9//phoneData.csv");
   
   if(SCANNER != null)
   {
@@ -73,5 +91,13 @@ void READ_DATA()
         LIST.ADD_PHONE(P);
         MAP.ADD_PHONE(P);
     }
+    
+    SCANNER.close();
+    println("Size of the PhoneList after reading Data Sheet: " + LIST.GET_PHONE_SIZE());
+  }
+  
+  else
+  {
+      println("Failed to read data from this file");
   }
 }
