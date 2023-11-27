@@ -19,27 +19,36 @@ void setup()
   // CONCATENATE NEW TYPES BASED ON THESE CLASSES 
   // READ THE DATA ACCORDING TO THESE CLASSES
   
-  LIST = new PHONE_LIST();
-  MAP = new PHONE_MAP();
-  PHONE_LINE = new PHONE_LINES();
-  READ_DATA();
-  Scanner SCAN = InputReader.getScanner("phoneData.csv");
+    LIST = new PHONE_LIST();
+    MAP = new PHONE_MAP();
+    PHONE_LINE = new PHONE_LINES();
+    READ_DATA();
   
-  println("Original Phone List: ");
-  println(LIST.TO_STRING());
+    println("Original Phone List: ");
+    println(LIST.TO_STRING());
   
-  println("Sorted Phone List: ");
-  LIST.SORT_PHONE_TYPES();
-  println(LIST.TO_STRING());
+    println("Sorted Phone List: ");
+    LIST.SORT_PHONE_TYPES();
+    println(LIST.TO_STRING());
   
-  String FIND_BRAND = "";
-  String FIND_MODEL = "";
-  Phone FOUND_PHONE = LIST.FIND_WHICH_PHONE(FIND_BRAND, FIND_MODEL);
-  
-  if(FOUND_PHONE != null)
-  {
-     println("Found phone in List: " + FOUND_PHONE);
-  }
+    String FIND_BRAND = "Apple";
+    String FIND_MODEL = "iPhone 7 Plus";
+    
+    // THE FOLLOWING LINEE DISCERNS WHETHER THE PHONE AND THE RESPECTIVE
+    // ELEMENTS CAN BE FOUND BASED ON USER INPUT
+    
+    Phone FOUND_PHONE = LIST.FIND_WHICH_PHONE(FIND_BRAND, FIND_MODEL);
+    
+    // UNIT TESTING TO DISCERN VARIOUS TYPES
+    
+    if (FOUND_PHONE != null) 
+    {
+        println("Found phone in List: " + FOUND_PHONE);
+    } 
+    else
+    {
+        println("Phone not found for brand: " + FIND_BRAND + " and model: " + FIND_MODEL);
+    }
 }
 
 void READ_DATA()
@@ -63,6 +72,7 @@ void READ_DATA()
         PHONE_LINE.PHONE_WEIGHT = Float.parseFloat(PHONE_LINE.LINE_DATA[11]);
         PHONE_LINE.PHONE_MEM = PHONE_LINE.LINE_DATA[21];
         PHONE_LINE.PHONE_PRICE = Integer.parseInt(PHONE_LINE.LINE_DATA[36]);
+        
         
         Phone P = new Phone(PHONE_LINE.PHONE_BRAND);
         P.setModel(PHONE_LINE.PHONE_MODEL);
