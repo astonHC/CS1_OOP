@@ -12,17 +12,7 @@ import java.util.Scanner;
 
 PHONE_LIST LIST;
 PHONE_MAP MAP;
-
-// PUBLIC METHODS FOR EASE OF USE
-
-String SCAN_NEXT_LINE;
-String[] LINE_DATA;
-String PHONE_BRAND;
-String PHONE_MODEL;
-String PHONE_ANNOUNCED;
-String PHONE_MEM;
-float PHONE_WEIGHT;
-int PHONE_PRICE;
+PHONE_LINES PHONE_LINE;
 
 void setup()
 {
@@ -31,6 +21,7 @@ void setup()
   
   LIST = new PHONE_LIST();
   MAP = new PHONE_MAP();
+  PHONE_LINE = new PHONE_LINES();
   READ_DATA();
   Scanner SCAN = InputReader.getScanner("phoneData.csv");
   
@@ -45,8 +36,8 @@ void setup()
   println("Sorted Phone List: ");
   println(LIST);
   
-  String FIND_BRAND = "Apple";
-  String FIND_MODEL = "iPhone 8";
+  String FIND_BRAND = "";
+  String FIND_MODEL = "";
   Phone FOUND_PHONE = LIST.FIND_WHICH_PHONE(FIND_BRAND, FIND_MODEL);
   
   if(FOUND_PHONE != null)
@@ -62,7 +53,7 @@ void setup()
 
 void READ_DATA()
 {
-   Scanner SCANNER = InputReader.getScanner("D://Programming//CS1_OOP//LAB9//LAB9//phoneData.csv");
+   Scanner SCANNER = InputReader.getScanner("D:\\Programming\\CS1_OOP\\LAB9\\LAB9\\phoneData.csv");
   
   if(SCANNER != null)
   {
@@ -74,20 +65,20 @@ void READ_DATA()
     
     while(SCANNER.hasNextLine())
     {
-        SCAN_NEXT_LINE = SCANNER.nextLine();
-        LINE_DATA = SCAN_NEXT_LINE.split(",");
-        PHONE_BRAND = LINE_DATA[0];
-        PHONE_MODEL = LINE_DATA[1];
-        PHONE_WEIGHT = Float.parseFloat(LINE_DATA[11]);
-        PHONE_MEM = LINE_DATA[21];
-        PHONE_PRICE = Integer.parseInt(LINE_DATA[36]);
+        PHONE_LINE.SCAN_NEXT_LINE = SCANNER.nextLine();
+        PHONE_LINE.LINE_DATA = PHONE_LINE.SCAN_NEXT_LINE.split(",");
+        PHONE_LINE.PHONE_BRAND = PHONE_LINE.LINE_DATA[0];
+        PHONE_LINE.PHONE_MODEL = PHONE_LINE.LINE_DATA[1];
+        PHONE_LINE.PHONE_WEIGHT = Float.parseFloat(PHONE_LINE.LINE_DATA[11]);
+        PHONE_LINE.PHONE_MEM = PHONE_LINE.LINE_DATA[21];
+        PHONE_LINE.PHONE_PRICE = Integer.parseInt(PHONE_LINE.LINE_DATA[36]);
         
-        Phone P = new Phone(PHONE_BRAND);
-        P.setModel(PHONE_MODEL);
-        P.setAnnounced(PHONE_ANNOUNCED);
-        P.setWeight_g(PHONE_WEIGHT);
-        P.setInternal_memory(PHONE_MEM);
-        P.setApprox_price_EUR(PHONE_PRICE);
+        Phone P = new Phone(PHONE_LINE.PHONE_BRAND);
+        P.setModel(PHONE_LINE.PHONE_MODEL);
+        P.setAnnounced(PHONE_LINE.PHONE_ANNOUNCED);
+        P.setWeight_g(PHONE_LINE.PHONE_WEIGHT);
+        P.setInternal_memory(PHONE_LINE.PHONE_MEM);
+        P.setApprox_price_EUR(PHONE_LINE.PHONE_PRICE);
         LIST.ADD_PHONE(P);
         MAP.ADD_PHONE(P);
     }
