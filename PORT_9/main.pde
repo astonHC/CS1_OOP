@@ -32,10 +32,6 @@ void setup()
   LIST.SORT_PHONE_TYPES();
   println(LIST.TO_STRING());
   
-  LIST.SORT_PHONE_TYPES();
-  println("Sorted Phone List: ");
-  println(LIST);
-  
   String FIND_BRAND = "";
   String FIND_MODEL = "";
   Phone FOUND_PHONE = LIST.FIND_WHICH_PHONE(FIND_BRAND, FIND_MODEL);
@@ -43,11 +39,6 @@ void setup()
   if(FOUND_PHONE != null)
   {
      println("Found phone in List: " + FOUND_PHONE);
-  }
-  
-  else
-  {
-     println("Phone not found in List."); 
   }
 }
 
