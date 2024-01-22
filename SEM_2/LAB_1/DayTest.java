@@ -23,7 +23,7 @@ public class DayTest
 	private static Appointment APPOINTMENT_TYPE_A;
 	private static Appointment APPOINTMENT_TYPE_B;
 	private static Appointment APPOINTMENT_2HR;
-	private static boolean TEST_SUCCESS = false;
+	private static boolean APPOINTMENT_SUCCESS = false;
 	private static Appointment APPOINTMENT_FETCHED;
 	
 	/* WE USE THE BEFORE EACH CLAUSE TO EXECUTE A DESIGNATED CHUNK */
@@ -46,16 +46,16 @@ public class DayTest
 	{
 		// EVALUATE THE BOOLEAN EXPRESSION BASED ON THE ALLOTTED TIME FOR THE APPOINTMENT TEST_SUCCESS
 		
-		TEST_SUCCESS = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_TYPE_A);
+		APPOINTMENT_SUCCESS = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_TYPE_A);
 		APPOINTMENT_FETCHED = DAY_BASE.getAppointment(DAY_BASE.START_OF_DAY - 1);
 		
 		// ASSERT THE FOLLOWING THAT MAKING AN APPOINTMENT FOR THIS DESIGNATED FIELD WILL NOT WORK
 		// SUBSEQUENT FUNCTIONS WILL EVALUATE THIS TEST TO OUTPUT AS TRUE
 		
-		assertFalse(TEST_SUCCESS, "Making an Appointment before the designated time will not work");
+		assertFalse(APPOINTMENT_SUCCESS, "Making an Appointment before the designated time will not work");
 		assertNull(APPOINTMENT_FETCHED, "No appointment can be made for an invalid time");
 		
-		System.out.println("Making an appointment before the start of the day will not work");
+		//System.out.println("Making an appointment before the start of the day will not work");
 	}
 	
 	/* SECOND TEST CASE - */ 
@@ -72,14 +72,53 @@ public class DayTest
 		// THE TEST WILL BE RENDERED SUCCESSFUL ASSUMING THAT THE START OF THE DAY
 		// DECLARATION HAS BEEN MET
 		
-		TEST_SUCCESS = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_START);
+		APPOINTMENT_SUCCESS = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_START);
 		APPOINTMENT_FETCHED = DAY_BASE.getAppointment(DAY_BASE.START_OF_DAY);
 		
-		assertTrue(TEST_SUCCESS, "Making an Appointment at the start of the Day works");
+		assertTrue(APPOINTMENT_SUCCESS, "Making an Appointment at the start of the Day works");
 		assertSame(APPOINTMENT_START, APPOINTMENT_FETCHED, "Appointment for this time has been established");
 		
 	}
 	
+	/* THIRD TEST CASE - */ 
+	/* THIS TEST WILL CHECK TO DETERMINE THE OUTCOME OVER WHAT WILL HAPPEN */
+	/* WHEN TWO APPOINTMENTS ARE MADE IN THE SAME DAY */
 	
+	@Test
+	public final void TWO_APPOINTMENTS()
+	{
+		// DECLARE TWO ARGS FOR DEFINING EACH RESPECTIVE TYPE OF APPOINTMENT
+		
+		boolean ARG_A = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_TYPE_A);
+		boolean ARG_B = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_TYPE_B);
+		
+		// I WILL USE THE SAME APPOINTMENT VARIABLE TO DISCERN WHICH APPOINTMENT IS WHICH
+		
+		APPOINTMENT_FETCHED = DAY_BASE.getAppointment(DAY_BASE.START_OF_DAY);
+		
+		assertTrue(ARG_A, "Making the first appointment into an empty slot");
+		assertSame(ARG_A, APPOINTMENT_FETCHED, "First appoinment fetched");
+		
+		assertTrue(ARG_B, "Making an appointment in the existing slot will not work");
+		assertSame(ARG_A, APPOINTMENT_FETCHED, "The existing apoointment cannot be overwritten");
+	}
+	
+	/* FOURTH AND FINAL CASE - */
+	/* FINALLY, WE ASSUME THE ROLE OF BOOKING AN APPOINTMENT WITHIN THE */
+	/* FIRST TWO HOURS OF THE DAY */
+	
+	/* THIS IS POSSBILE DUE TO THE START_OF_THE_DAY PARAMETER BEING AN INT TYPE */
+	/* WITH EACH SUBSEQUENT INCREMENT, THE HOUR INCREASES */
+	
+	public final void TWO_HR_APPOINTMENTS()
+	{
+		APPOINTMENT_SUCCESS = DAY_BASE.makeAppointment(DAY_BASE.START_OF_DAY, APPOINTMENT_2HR);
+		APPOINTMENT_FETCHED = DAY_BASE.getAppointment(DAY_BASE.START_OF_DAY); // 1 HOUR
+		APPOINTMENT_FETCHED = DAY_BASE.getAppointment(DAY_BASE.START_OF_DAY + 1); // 2 HOURS
+		
+		assertTrue(APPOINTMENT_SUCCESS, "Making a 2 hour Appointment at the start of the Day works");
+		assertSame(APPOINTMENT_2HR, APPOINTMENT_FETCHED, "First hour fetched accordingly");
+		assertSame(APPOINTMENT_2HR, APPOINTMENT_FETCHED, "Second hour fetched accordingly");
+	}
 	
 }
